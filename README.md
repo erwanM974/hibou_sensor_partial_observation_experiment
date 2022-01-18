@@ -52,7 +52,8 @@ With the "plot_sensor_exp_hibou.r" R script, we plot the data stored in "sensor_
 
 In those plots:
 - the *x* axis corresponds to a length of the original multi-trace (expressed in terms of the number of times the outer loop is instantiated)
-- the *y* axis corresponds to a percentage of observation. At $100$ it is fully observed, at $y < 100$ actions are randomly removed until the length is $y/100$ of the original
+- the *y* axis corresponds to a percentage of observation. 
+At 100 it is fully observed, at y < 100 actions are randomly removed until the length is y/100 of the original
 - the *z* axis corresponds to the time taken to correctly recognize the multi-trace.
 
 Results related to the recognition of accepted prefixes are represented on the first row while those related to that of erroneous multi-trace are on the second row.
@@ -61,7 +62,7 @@ Let us remark the logarithmic scale on the two leftmost plots.
 The 4 coloured surfaces each correspond to a method/algorithm. 
 In order to deal with partial observation, we can either use hiding steps or use simulation steps to fill-in missing actions. 
 In order to reduce the search space we may or may not use local analyses. 
-Hence we have $4$ surfaces, each corresponding to a combination of techniques:
+Hence we have 4 surfaces, each corresponding to a combination of techniques:
 - <span style="color:blue">in *blue* using hiding with local analyses</span>
 - <span style="color:yellow">in *yellow* using simulation with local analyses</span>
 - <span style="color:green">in *green* using hiding without local analyses</span>
