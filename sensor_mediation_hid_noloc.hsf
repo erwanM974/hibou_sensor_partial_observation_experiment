@@ -1,0 +1,39 @@
+@analyze_option{
+    strategy = DepthFS;
+    analysis_kind = hide;
+    local_analysis = false;
+    goal = WeakPass
+}
+@message{
+    ce;cmi;rlsoc;lsoc;rbm;bm;rcm;cm;tdc;tmu;ucm;err
+}
+@lifeline{
+    CSI;CI;SM;LSM;CSM;CR;CA;SOS
+}
+loopS(
+    seq(
+        CSI -- ce    -> CI,
+        CI  -- cmi   -> SM,
+        SM  -- rlsoc -> SOS,
+        SOS -- lsoc  -> SM,
+        par(
+            seq(
+                SM  -- rbm   -> LSM,
+                LSM -- bm    -> SM
+            ),
+            seq(
+                SM  -- rcm   -> CSM,
+                CSM -- cm    -> SM
+            )
+        ),
+        SM  -- cm    -> CSI,
+        loopS(
+            seq(
+                CA  -- tdc   -> CR,
+                CR  -- tmu   -> CSM,
+                CSM -- ucm   -> SM,
+                SM  -- ucm   -> CSI
+            )
+       )
+    )
+)
