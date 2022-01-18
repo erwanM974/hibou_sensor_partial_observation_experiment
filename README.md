@@ -18,7 +18,7 @@ See "[hibou_label](https://github.com/erwanM974/hibou_label)" for the tool that 
 
 We propose as a usecase a non-trivial interaction model inspired from the sequence diagram found in "A dynamic and context-aware semantic mediation service for discovering and fusion of heterogeneous sensor data".
 
-<img src="./README_images/sensor_mediation.png" alt="sensor example sequence diagram" width="300">
+<img src="./README_images/sensor_mediation_example.png" alt="sensor example sequence diagram" width="500">
 
 ## Input Multi-traces
 
