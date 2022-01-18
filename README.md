@@ -47,8 +47,8 @@ With the "plot_sensor_exp_hibou.r" R script, we plot the data stored in "sensor_
 
 |             | log scale   | normal scale|
 | ----------- | ----------- | ----------- |
-| correct     | <img src="./README_images/pltrw_pass.svg" alt="" width="200"> | <img src="./README_images/pltrw_pass_zoom.svg" alt="" width="200"> |
-| deviations  | <img src="./README_images/pltrw_fail.svg" alt="" width="200"> | <img src="./README_images/pltrw_fail_loc.svg" alt="" width="200"> |
+| correct     | <img src="./README_images/pltrw_pass.png" alt="" width="200"> | <img src="./README_images/pltrw_pass_zoom.png" alt="" width="200"> |
+| deviations  | <img src="./README_images/pltrw_fail.png" alt="" width="200"> | <img src="./README_images/pltrw_fail_loc.png" alt="" width="200"> |
 
 In those plots:
 - the *x* axis corresponds to a length of the original multi-trace (expressed in terms of the number of times the outer loop is instantiated)
