@@ -43,7 +43,7 @@ This script then generates a "sensor_mediation.csv" file containing data about t
 
 ## Results
 
-With the "plot_sensor_exp_hibou.r" R script, we plot the data stored in "sensor_mediation.csv" and obtain the following 4 diagrams.
+With the "plot_sensor_exp_hibou.r" R script, we plot the data stored in "sensor_mediation.csv" and obtain the following plots.
 
 |             | log scale   | normal scale|
 | ----------- | ----------- | ----------- |
@@ -67,6 +67,15 @@ Hence we have 4 surfaces, each corresponding to a combination of techniques:
 - <span style="color:yellow">in *yellow* using simulation with local analyses</span>
 - <span style="color:green">in *green* using hiding without local analyses</span>
 - <span style="color:red">in *red* using simulation without local analyses</span>
+
+
+
+By fixing the original multi-trace length we get the following plots:
+
+| correct   | deviations |
+| ----------- | ----------- |
+| <img src="./README_images/plt_sensor8_pass.png" alt="" width="350"> | <img src="./README_images/plt_sensor8_fail.png" alt="" width="350"> |
+
 
 
 For accepted prefixes, we can remark that the most efficient method is that using hiding without local analyses.
