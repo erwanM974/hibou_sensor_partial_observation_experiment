@@ -17,7 +17,7 @@ See "[hibou_label](https://github.com/erwanM974/hibou_label)" for the tool that 
 
 We propose as a use case a non-trivial interaction model inspired from the sequence diagram found in "A dynamic and context-aware semantic mediation service for discovering and fusion of heterogeneous sensor data".
 
-<img src="./README_images/sensor_mediation.png" alt="sensor example sequence diagram" width="300">
+<img src="./README_images/sensor_mediation.png" alt="sensor example sequence diagram" width="350">
 
 ## Input Multi-traces
 
@@ -58,7 +58,7 @@ The table below summarizes the nature of those 4000 multi-traces, we have:
 
 Those 4000 multi-traces can be categorized by length as done in the table below. For instance, we have a total of 591 multi-traces of length between 0 and 50 (in number of actions).
 
-<img src="./README_images/senmed_data.png" alt="data on an experiment" width="300">
+<img src="./README_images/senmed_data.png" alt="data on an experiment" width="450">
 
 In order to deal with partial observation, we can either use hiding steps or use simulation steps to fill-in missing actions. 
 In order to reduce the search space we may or may not use local analyses. 
@@ -79,7 +79,7 @@ It is the case for 1105 multi-traces for the method which uses hiding steps with
 and for 1196 multi-traces for the method which uses simulation steps without local analyses.
 Details are given on the table below.
 
-<img src="./README_images/senmed_timeout.png" alt="occurrences of exceeding the timeout for analysis" width="300">
+<img src="./README_images/senmed_timeout.png" alt="occurrences of exceeding the timeout for analysis" width="450">
 
 Yet, the use of local analyses constitutes an overhead for the treatment of each node of the search graph.
 Hence it comes at a cost, which may not be beneficial in all cases. 
