@@ -16,8 +16,10 @@ See "[hibou_label](https://github.com/erwanM974/hibou_label)" for the tool that 
 ## Input interaction model
 
 We propose as a use case a non-trivial interaction model inspired from the sequence diagram found in "A dynamic and context-aware semantic mediation service for discovering and fusion of heterogeneous sensor data".
+This model is interesting for those experiments in so far as it contains 8 different lifelines, which allows leveraging the use of the hiding operator
+and it has an interesting syntax, with nested loops and parallelization.
 
-<img src="./README_images/sensor_mediation.png" alt="sensor example sequence diagram" width="350">
+<img src="./README_images/sensor_mediation.png" alt="sensor example sequence diagram" width="500">
 
 ## Input Multi-traces
 
@@ -25,6 +27,18 @@ With the "exp_generate.py" Python script:
 - we generate a number of multi-traces which are exactly accepted by the aforementioned interaction model. Those generated multi-traces correspond to between 1 and 40 instantiations of the outer loop (repetitions of the global behavior) that can be seen above.
 - we also generate prefixes (in the sense of multi-traces) of those multi-traces by removing actions at the end of local components until a certain "percentage" of observation is reached (the length is reduced until this "observation" percentage of the original length is reached).
 - for all those generated multi-traces, we also build mutants by adding an unexpected action at the end of a random component.
+
+In the following we present what was obtained in the "senmed_1to40.csv" table which contains such randomly generated multi-traces.
+In this sample we have 4000 multi-traces.
+The table below summarizes the nature of those 4000 multi-traces, we have:
+- 200 original fully observed accepted multi-traces of lengths between 13 and 967
+- 1800 prefixes of those 200 original multi-traces, each corresponding to a percentage of observation (in terms of number of actions) between 10 and 90. In order to obtain such a prefix, actions are randomly removed at the end of the components of an original multi-trace until the percentage of observation is reached.
+- 2000 mutants which, via the addition of an unexpected event, are guaranteed to deviate from the specification and hence, if analyzed, will yield a Fail verdict
+
+
+Those 4000 multi-traces can be categorized by length as done in the table below. For instance, we have a total of 591 multi-traces of length between 0 and 50 (in number of actions).
+
+<img src="./README_images/senmed_data.png" alt="data on an experiment" width="450">
 
 ## Comparing different methods
 
@@ -40,8 +54,6 @@ Hence we compare 4 different algorithms. With the "script_perfs.py" Python scrip
 In order to smooth the results, we retain, for each run, the median of 5 tries, as the time required for the analysis.
 
 This script then generates a "senmed.csv" file containing data about the time required to recognize the multi-traces.
-
-
 The "sendmed_1to40.csv" contains such a table and this generated data has been used to draw the plots in the following.
 
 
@@ -49,28 +61,18 @@ The "sendmed_1to40.csv" contains such a table and this generated data has been u
 
 With the "sensor_exp_hibou_data.r" R script, we analyze and plot the data stored in the previously obtained .csv table.
 
-In the following we present what was obtained in the "senmed_1to40.csv" table.
-In this sample we have 16000 data points for the application of the 4 methods to 4000 multi-traces.
-The table below summarizes the nature of those 4000 multi-traces, we have:
-- 200 original fully observed accepted multi-traces of lengths between 13 and 967
-- 1800 prefixes of those 200 original multi-traces, each corresponding to a percentage of observation (in terms of number of actions) between 10 and 90. In order to obtain such a prefix, actions are randomly removed at the end of the components of an original multi-trace until the percentage of observation is reached.
-- 2000 mutants which, via the addition of an unexpected event, are guaranteed to deviate from the specification and hence, if analyzed, will yield a Fail verdict
-
-Those 4000 multi-traces can be categorized by length as done in the table below. For instance, we have a total of 591 multi-traces of length between 0 and 50 (in number of actions).
-
-<img src="./README_images/senmed_data.png" alt="data on an experiment" width="450">
-
-In order to deal with partial observation, we can either use hiding steps or use simulation steps to fill-in missing actions. 
-In order to reduce the search space we may or may not use local analyses. 
-Hence we have $4$ methods, each corresponding to a combination of techniques and a color in the plots:
+In the following, the 4 aforementioned methods for the analysis are each associate to a color:
 - <span style="color:blue">in *blue* using hiding with local analyses</span>
 - <span style="color:yellow">in *yellow* using simulation with local analyses</span>
 - <span style="color:green">in *green* using hiding without local analyses</span>
 - <span style="color:red">in *red* using simulation without local analyses</span>
 
-Each one of the 4 methods was used to analyze the 4000 multi-traces. The experiment was run using an i5-8250U processor and 32Go of RAM.
-In order to generate the 16000 data points, we have set a timeout of 10s for the maximum time an analysis can take. 
+Each one of the 4 methods was used to analyze the 4000 multi-traces, thus yielding 16000 data points. 
+The experiment was run using an i5-8250U processor and 32Go of RAM.
+We have used HIBOU version 0.7.4.
 
+
+In order to generate the 16000 data points, we have set a timeout of 10s for the maximum time an analysis can take. 
 
 
 Both methods which use local analyses can analyze all of the 4000 multi-traces under 10s. 
