@@ -11,11 +11,12 @@
 # limitations under the License.
 #
 
+from itertools import repeat
 
 import random
 import copy
 
-from script_commons import *
+from exp_commons import *
 
 def make_multitrace(outer_loop_n):
     multi_trace = {}
@@ -81,16 +82,17 @@ def add_err_at_end(mu):
     mu[got_key] += ["{}!err".format(got_key)]
     return mu
 
-def generate():
-    random.seed(10)
-    #
+def generate_multi_trace_as_iterator():
+    trace_id = 1
     for outer_loop_n in multitrace_outer_loop_ns:
-        mu = make_multitrace(outer_loop_n)
-        length = multi_trace_length(mu)
-        for obs in multi_trace_obs:
-            goal_length = int( length*(obs/100) )
-            got_mu = cut_end_multi_trace(copy.deepcopy(mu),goal_length)
-            print_multi_trace("mu_{}_{}".format(outer_loop_n,obs), got_mu)
-            fail_mu = add_err_at_end(got_mu)
-            print_multi_trace("mu_{}_{}_fail".format(outer_loop_n,obs), fail_mu)
+        for _ in repeat(None,multi_trace_number_per_loop_height):
+            mu = make_multitrace(outer_loop_n)
+            orig_length = multi_trace_length(mu)
+            for obs in multi_trace_obs:
+                goal_length = int(orig_length * (obs / 100))
+                got_mu = cut_end_multi_trace(copy.deepcopy(mu), goal_length)
+                yield (got_mu, trace_id, outer_loop_n, orig_length, goal_length, obs, True)
+                fail_mu = add_err_at_end(got_mu)
+                yield (fail_mu, trace_id, outer_loop_n, orig_length, goal_length + 1, obs, False)
+            trace_id = trace_id + 1
 

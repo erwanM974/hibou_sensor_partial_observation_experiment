@@ -11,23 +11,17 @@
 # limitations under the License.
 #
 
-
-import os
-
-from script_generate import generate
-from script_perfs import experiment
-
-
-
-def try_mkdir(dir_path):
-    try:
-        os.mkdir(dir_path)
-    except FileExistsError:
-        pass
+timeout_in_seconds = 10
+#
+multi_trace_number_per_loop_height = 5
+#
+multitrace_outer_loop_ns = [x for x in range(1,41)]
+#
+multi_trace_obs = [100, 90, 80, 70, 60, 50, 40, 30, 20, 10]
+#
+hsfs = ["hid_wtloc","hid_noloc","sim_wtloc","sim_noloc"]
+#
+sensor_example_lifelines = ["CSI","CI","SM","LSM","CSM","CR","CA","SOS"]
 
 
-if __name__ == '__main__':
-    try_mkdir("./temp/")
-    generate()
-    experiment("sensor_mediation")
 
